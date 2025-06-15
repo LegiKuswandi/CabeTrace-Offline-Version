@@ -106,7 +106,7 @@ class _HomePageState extends State<HomePage> {
           Align(
             alignment: Alignment.bottomCenter,
             child: Image.asset(
-              'assets/image/bawahm.png',
+              'assets/images/bawahm.png',
               fit: BoxFit.cover,
               width: double.infinity,
             ),
@@ -148,7 +148,7 @@ class _HomePageState extends State<HomePage> {
                 ),
 
                 const SizedBox(height: 20),
-                Center(child: Image.asset('assets/image/logow.png', height: 100)),
+                Center(child: Image.asset('assets/images/logow.png', height: 100)),
                 const SizedBox(height: 60),
                 const Center(
                   child: Text(
@@ -156,7 +156,7 @@ class _HomePageState extends State<HomePage> {
                     style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                   ),
                 ),
-                const SizedBox(height: 30),
+                const SizedBox(height: 50),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 32),
                   child: Row(
@@ -182,37 +182,37 @@ class _HomePageState extends State<HomePage> {
 
                 const Spacer(),
 
-                Padding(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
-                  child: SizedBox(
-                    width: double.infinity,
-                    child: ElevatedButton(
-                      onPressed: () {
-                        // Navigator.push(
-                        //   context,
-                        //   MaterialPageRoute(
-                        //     builder: (_) => RiwayatIdentifikasiPage(
-                        //         username: widget.username),
-                        //   ),
-                        // );
-                      },
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.white,
-                        foregroundColor: Colors.black,
-                        elevation: 3,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-                        padding: const EdgeInsets.symmetric(vertical: 16),
-                      ),
-                      child: const Text(
-                        'Riwayat Identifikasi',
-                        style: TextStyle(fontSize: 16),
-                      ),
-                    ),
-                  ),
-                ),
+                // Padding(
+                //   padding:
+                //       const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+                //   child: SizedBox(
+                //     width: double.infinity,
+                //     child: ElevatedButton(
+                //       onPressed: () {
+                //         // Navigator.push(
+                //         //   context,
+                //         //   MaterialPageRoute(
+                //         //     builder: (_) => RiwayatIdentifikasiPage(
+                //         //         username: widget.username),
+                //         //   ),
+                //         // );
+                //       },
+                //       style: ElevatedButton.styleFrom(
+                //         backgroundColor: Colors.white,
+                //         foregroundColor: Colors.black,
+                //         elevation: 3,
+                //         shape: RoundedRectangleBorder(
+                //           borderRadius: BorderRadius.circular(12),
+                //         ),
+                //         padding: const EdgeInsets.symmetric(vertical: 16),
+                //       ),
+                //       child: const Text(
+                //         'Riwayat Identifikasi',
+                //         style: TextStyle(fontSize: 16),
+                //       ),
+                //     ),
+                //   ),
+                // ),
               ],
             ),
           ),
