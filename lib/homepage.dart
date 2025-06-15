@@ -2,10 +2,9 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image/image.dart' as img;
 import 'package:image_picker/image_picker.dart';
-// import 'package:shared_preferences/shared_preferences.dart';
 import '../helper/image_classification_helper.dart';
-// import 'loginPage.dart';
-// import 'riwayat.dart';
+import '../db/db_helper.dart';
+import 'riwayat.dart';
 
 class HomePage extends StatefulWidget {
   final String username;
@@ -31,16 +30,6 @@ class _HomePageState extends State<HomePage> {
     _imageClassificationHelper.initHelper();
   }
 
-  // Future<void> _logout(BuildContext context) async {
-  //   final prefs = await SharedPreferences.getInstance();
-  //   await prefs.setBool('is_logged_in', false);
-  //   await prefs.remove('username');
-  //   Navigator.pushReplacement(
-  //     context,
-  //     MaterialPageRoute(builder: (context) => const LoginPage()),
-  //   );
-  // }
-
   Future<void> _pickImage(ImageSource source) async {
     final pickedFile = await ImagePicker().pickImage(source: source);
     if (pickedFile != null) {
@@ -65,6 +54,14 @@ class _HomePageState extends State<HomePage> {
           ..sort((a, b) => b.value.compareTo(a.value));
         final prediction = top.first.key;
         final confidence = top.first.value;
+
+        final now = DateTime.now().toIso8601String();
+        await DBHelper().insertHistory({
+          'image_path': _selectedImage!.path,
+          'result': prediction,
+          'confidence': confidence,
+          'timestamp': now,
+        });
 
         showDialog(
           context: context,
@@ -118,8 +115,7 @@ class _HomePageState extends State<HomePage> {
                 // Header
                 Container(
                   color: const Color(0xFF008705),
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+                  padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -131,18 +127,6 @@ class _HomePageState extends State<HomePage> {
                           fontWeight: FontWeight.w500,
                         ),
                       ),
-                      // PopupMenuButton<String>(
-                      //   icon: const Icon(Icons.person, color: Colors.white),
-                      //   onSelected: (value) {
-                      //     if (value == 'logout') _logout(context);
-                      //   },
-                      //   itemBuilder: (context) => [
-                      //     const PopupMenuItem(
-                      //       value: 'logout',
-                      //       child: Text('Logout'),
-                      //     ),
-                      //   ],
-                      // ),
                     ],
                   ),
                 ),
@@ -176,43 +160,38 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
                 const SizedBox(height: 20),
-
                 if (_isLoading)
                   const Center(child: CircularProgressIndicator()),
-
                 const Spacer(),
-
-                // Padding(
-                //   padding:
-                //       const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
-                //   child: SizedBox(
-                //     width: double.infinity,
-                //     child: ElevatedButton(
-                //       onPressed: () {
-                //         // Navigator.push(
-                //         //   context,
-                //         //   MaterialPageRoute(
-                //         //     builder: (_) => RiwayatIdentifikasiPage(
-                //         //         username: widget.username),
-                //         //   ),
-                //         // );
-                //       },
-                //       style: ElevatedButton.styleFrom(
-                //         backgroundColor: Colors.white,
-                //         foregroundColor: Colors.black,
-                //         elevation: 3,
-                //         shape: RoundedRectangleBorder(
-                //           borderRadius: BorderRadius.circular(12),
-                //         ),
-                //         padding: const EdgeInsets.symmetric(vertical: 16),
-                //       ),
-                //       child: const Text(
-                //         'Riwayat Identifikasi',
-                //         style: TextStyle(fontSize: 16),
-                //       ),
-                //     ),
-                //   ),
-                // ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+                  child: SizedBox(
+                    width: double.infinity,
+                    child: ElevatedButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (_) => RiwayatIdentifikasiPage(username: widget.username),
+                          ),
+                        );
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.white,
+                        foregroundColor: Colors.black,
+                        elevation: 3,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                        padding: const EdgeInsets.symmetric(vertical: 16),
+                      ),
+                      child: const Text(
+                        'Riwayat Identifikasi',
+                        style: TextStyle(fontSize: 16),
+                      ),
+                    ),
+                  ),
+                ),
               ],
             ),
           ),
