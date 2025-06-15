@@ -13,25 +13,23 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   checkLoginStatus();
-  // }
+  @override
+  void initState() {
+    super.initState();
+    checkLoginStatus(); // ← panggil di sini agar splash otomatis lanjut
+  }
 
   Future<void> checkLoginStatus() async {
-    // final prefs = await SharedPreferences.getInstance();
-    // final isLoggedIn = prefs.getBool('is_logged_in') ?? false;
-    // final username = prefs.getString('username') ?? '';
+    await Future.delayed(const Duration(seconds: 3));
 
-    await Future.delayed(const Duration(seconds: 2));
-
+    if (!mounted) return;
 
     Navigator.pushReplacement(
       context,
       MaterialPageRoute(builder: (_) => HomePage(username: "legi")),
     );
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +41,7 @@ class _SplashScreenState extends State<SplashScreen> {
           children: [
             Spacer(),
             Image(
-              image: AssetImage('asset/images/logowo.png'),
+              image: AssetImage('assets/images/logowo.png'),
               width: 180,
               height: 180,
             ),
