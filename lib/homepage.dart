@@ -120,7 +120,7 @@ class _HomePageState extends State<HomePage> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        'Hi ${widget.username}',
+                        'Selamat Datang',
                         style: const TextStyle(
                           color: Colors.white,
                           fontSize: 18,
@@ -157,6 +157,13 @@ class _HomePageState extends State<HomePage> {
                         onTap: () => _pickImage(ImageSource.gallery),
                       ),
                     ],
+                  ),
+                ),
+                const SizedBox(height: 15),
+                const Center(
+                  child: Text(
+                    'Ambil dan unggah gambar daun saja',
+                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.normal),
                   ),
                 ),
                 const SizedBox(height: 20),
