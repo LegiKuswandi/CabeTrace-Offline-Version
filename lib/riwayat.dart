@@ -129,7 +129,7 @@ class _RiwayatIdentifikasiPageState extends State<RiwayatIdentifikasiPage> {
           children: [
             Text(tanggal),
             const SizedBox(height: 4),
-            Text('Confident: $confident', style: const TextStyle(color: Colors.grey)),
+            Text('Akurasi: $confident', style: const TextStyle(color: Colors.grey)),
           ],
         ),
         trailing: IconButton(

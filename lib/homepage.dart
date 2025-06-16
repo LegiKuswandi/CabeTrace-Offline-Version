@@ -66,7 +66,7 @@ class _HomePageState extends State<HomePage> {
         showDialog(
           context: context,
           builder: (context) => AlertDialog(
-            title: const Text('Hasil Prediksi'),
+            title: const Text('Hasil Identifikasi'),
             content: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
