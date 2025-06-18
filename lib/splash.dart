@@ -1,8 +1,4 @@
 import 'package:flutter/material.dart';
-// import 'package:shared_preferences/shared_preferences.dart';
-
-// Import halaman login dan home
-// import 'loginPage.dart';
 import 'homepage.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -16,7 +12,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    checkLoginStatus(); // ← panggil di sini agar splash otomatis lanjut
+    checkLoginStatus(); 
   }
 
   Future<void> checkLoginStatus() async {

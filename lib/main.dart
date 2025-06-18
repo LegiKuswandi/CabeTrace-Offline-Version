@@ -18,7 +18,6 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.green),
         useMaterial3: true,
       ),
-      // home: const HomePage(username: "Legi"),
       home: const SplashScreen(),
     );
   }

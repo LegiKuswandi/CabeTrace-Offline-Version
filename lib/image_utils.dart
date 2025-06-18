@@ -51,13 +51,8 @@ class ImageUtils {
         // Y plane should have positive values belonging to [0...255]
         final int y = yBuffer[yIndex];
 
-        // U/V Values are subsampled i.e. each pixel in U/V chanel in a
-        // YUV_420 image act as chroma value for 4 neighbouring pixels
         final int uvIndex = (uvh * uvRowStride) + (uvw * uvPixelStride);
 
-        // U/V values ideally fall under [-0.5, 0.5] range. To fit them into
-        // [0, 255] range they are scaled up and centered to 128.
-        // Operation below brings U/V values to [-128, 127].
         final int u = uBuffer[uvIndex];
         final int v = vBuffer[uvIndex];
 
